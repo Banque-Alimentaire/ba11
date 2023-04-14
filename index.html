@@ -16,7 +16,7 @@
             margin: 0;
         }
         </style>
-        <title></title>
+        <title>Territoire d'action de la BA de l'Aude </title>
     </head>
     <body>
         <div id="map">
@@ -57,7 +57,7 @@
         <script>
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[42.69268397210406,1.6141915969638598],[43.49862102039168,3.575016303932887]]);
+        }).fitBounds([[42.78164035239565,1.4958334818649681],[43.58917382916069,3.4597175130524858]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -984,7 +984,7 @@
                 lineJoin: 'bevel',
                 weight: 1.0,
                 fillOpacity: 0,
-                interactive: false,
+                interactive: true,
             }
         }
         map.createPane('pane_Dpartementvoisins_14');
@@ -992,7 +992,7 @@
         map.getPane('pane_Dpartementvoisins_14').style['mix-blend-mode'] = 'normal';
         var layer_Dpartementvoisins_14 = new L.geoJson(json_Dpartementvoisins_14, {
             attribution: '',
-            interactive: false,
+            interactive: true,
             dataVar: 'json_Dpartementvoisins_14',
             layerName: 'layer_Dpartementvoisins_14',
             pane: 'pane_Dpartementvoisins_14',
@@ -1393,6 +1393,16 @@
         });
         bounds_group.addLayer(layer_BanqueAlimentairedelAude_22);
         map.addLayer(layer_BanqueAlimentairedelAude_22);
+            var title = new L.Control();
+            title.onAdd = function (map) {
+                this._div = L.DomUtil.create('div', 'info');
+                this.update();
+                return this._div;
+            };
+            title.update = function () {
+                this._div.innerHTML = '<h2>Territoire d\'action de la BA de l\'Aude </h2>';
+            };
+            title.addTo(map);
         var baseMaps = {};
         L.control.layers(baseMaps,{'<img src="legend/BanqueAlimentairedelAude_22.png" /> Banque Alimentaire de l\'Aude ': layer_BanqueAlimentairedelAude_22,'<img src="legend/SecoursPopulaire_21.png" /> Secours Populaire': layer_SecoursPopulaire_21,'<img src="legend/RestoduCoeur_20.png" /> Resto du Coeur': layer_RestoduCoeur_20,'<img src="legend/Associationspartenaires_19.png" /> Associations partenaires': layer_Associationspartenaires_19,'<img src="legend/Autresassociationshabilites_18.png" /> Autres associations habilitées': layer_Autresassociationshabilites_18,'<img src="legend/Epiceriesitinrantes_17.png" /> Epiceries itinérantes': layer_Epiceriesitinrantes_17,'<img src="legend/Communesavecaidealimentaire_16.png" /> Communes avec aide alimentaire': layer_Communesavecaidealimentaire_16,'<img src="legend/DpartementAude_15.png" /> Département Aude': layer_DpartementAude_15,'<img src="legend/Dpartementvoisins_14.png" /> Département voisins': layer_Dpartementvoisins_14,'<img src="legend/Communes_13.png" /> Communes ': layer_Communes_13,'<img src="legend/Communesensecretstatistique_12.png" /> Communes en secret statistique': layer_Communesensecretstatistique_12,'<img src="legend/SigesdesPAT_11.png" /> Sièges des PAT': layer_SigesdesPAT_11,'<img src="legend/TerritoiresporteursdePAT_10.png" /> Territoires porteurs de PAT': layer_TerritoiresporteursdePAT_10,'<img src="legend/Villesmajeures_9.png" /> Villes majeures': layer_Villesmajeures_9,'<img src="legend/AiredAttractiondesVilles_8.png" /> Aire d\'Attraction des Villes': layer_AiredAttractiondesVilles_8,'<img src="legend/ZonedeRevitalisationRurale_7.png" /> Zone de Revitalisation Rurale': layer_ZonedeRevitalisationRurale_7,'<img src="legend/PrimtreQPVCarcassonneNarbonneLzignanLimoux_6.png" /> Périmètre QPV (Carcassonne, Narbonne, Lézignan, Limoux) ': layer_PrimtreQPVCarcassonneNarbonneLzignanLimoux_6,'<img src="legend/Communesparticulirementendifficults_5.png" /> Communes particulièrement en difficultés': layer_Communesparticulirementendifficults_5,'EPCI - Taux de pauvreté<br /><table><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_4_1491780.png" /></td><td>14,9 - 17,8</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_4_1782061.png" /></td><td>17,8 - 20,6</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_4_2062352.png" /></td><td>20,6 - 23,5</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_4_2352633.png" /></td><td>23,5 - 26,3</td></tr></table>': layer_EPCITauxdepauvret_4,'Nombre d\'inactifs<br /><table><tr><td style="text-align: center;"><img src="legend/Nombredinactifs_3_0510.png" /></td><td>0 - 51</td></tr><tr><td style="text-align: center;"><img src="legend/Nombredinactifs_3_511011.png" /></td><td>51 - 101</td></tr><tr><td style="text-align: center;"><img src="legend/Nombredinactifs_3_1015012.png" /></td><td>101 - 501</td></tr><tr><td style="text-align: center;"><img src="legend/Nombredinactifs_3_50110013.png" /></td><td>501 - 1001</td></tr><tr><td style="text-align: center;"><img src="legend/Nombredinactifs_3_100150014.png" /></td><td>1001 - 5001</td></tr><tr><td style="text-align: center;"><img src="legend/Nombredinactifs_3_500198865.png" /></td><td>5001 - 9886</td></tr></table>': layer_Nombredinactifs_3,'Taux de chômage<br /><table><tr><td style="text-align: center;"><img src="legend/Tauxdechmage_2_01130.png" /></td><td>0 - 11,3</td></tr><tr><td style="text-align: center;"><img src="legend/Tauxdechmage_2_1131421.png" /></td><td>11,3 - 14,2</td></tr><tr><td style="text-align: center;"><img src="legend/Tauxdechmage_2_1421732.png" /></td><td>14,2 - 17,3</td></tr><tr><td style="text-align: center;"><img src="legend/Tauxdechmage_2_1732213.png" /></td><td>17,3 - 22,1</td></tr><tr><td style="text-align: center;"><img src="legend/Tauxdechmage_2_221504.png" /></td><td>22,1 - 50</td></tr></table>': layer_Tauxdechmage_2,'Médiane du niveau de vie / communes<br /><table><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_1_11780146700.png" /></td><td>11780 - 14670</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_1_14910177501.png" /></td><td>14910 - 17750</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_1_17770206802.png" /></td><td>17770 - 20680</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_1_20690235403.png" /></td><td>20690 - 23540</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_1_23800266604.png" /></td><td>23800 - 26660</td></tr></table>': layer_Mdianeduniveaudeviecommunes_1,"Google Road": layer_GoogleRoad_0,},{collapsed:false}).addTo(map);
         setBounds();

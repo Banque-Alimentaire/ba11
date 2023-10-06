@@ -37,8 +37,8 @@
         <script src="data/Chmage_4.js"></script>
         <script src="data/Mdianeduniveaudeviecommunes_5.js"></script>
         <script src="data/EPCITauxdepauvret_6.js"></script>
-        <script src="data/CommunesavecQPV_7.js"></script>
-        <script src="data/QPVAude_8.js"></script>
+        <script src="data/QPVAude_7.js"></script>
+        <script src="data/CommunesavecQPV_8.js"></script>
         <script src="data/Communesavecaidealimentaire_9.js"></script>
         <script src="data/Epicerieitinrante_10.js"></script>
         <script src="data/Autresassociationshabilites_11.js"></script>
@@ -56,7 +56,7 @@
         }
         var map = L.map('map', {
             zoomControl:true, maxZoom:28, minZoom:1
-        }).fitBounds([[42.68643621761601,1.6295751929596056],[43.48837710737158,3.6273976927985645]]);
+        }).fitBounds([[42.769880154198376,1.8953173555448188],[43.371505816281115,3.402042522243128]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
@@ -213,6 +213,10 @@
                         <th scope="row">ZRR</th>\
                         <td>' + (feature.properties['ZRR_field_'] !== null ? autolinker.link(feature.properties['ZRR_field_'].toLocaleString()) : '') + '</td>\
                     </tr>\
+                    <tr>\
+                        <th scope="row">Population</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
+                    </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
@@ -221,14 +225,14 @@
             return {
                 pane: 'pane_ZRR_3',
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(35,35,35,0.7)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(51,160,44,1.0)',
+                fillColor: 'rgba(51,160,44,0.7)',
                 interactive: true,
             }
         }
@@ -266,6 +270,10 @@
                     <tr>\
                         <th scope="row">Taux de chômage (%)</th>\
                         <td>' + (feature.properties['Chômage_T'] !== null ? autolinker.link(feature.properties['Chômage_T'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Population</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -382,6 +390,10 @@
                     <tr>\
                         <th scope="row">Médiane du niveau de vie (€)</th>\
                         <td>' + (feature.properties['Médiane d'] !== null ? autolinker.link(feature.properties['Médiane d'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Population</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -586,55 +598,7 @@
             style: style_EPCITauxdepauvret_6_0,
         });
         bounds_group.addLayer(layer_EPCITauxdepauvret_6);
-        function pop_CommunesavecQPV_7(feature, layer) {
-            layer.on({
-                mouseout: function(e) {
-                    if (typeof layer.closePopup == 'function') {
-                        layer.closePopup();
-                    } else {
-                        layer.eachLayer(function(feature){
-                            feature.closePopup()
-                        });
-                    }
-                },
-                mouseover: highlightFeature,
-            });
-            var popupContent = '<table>\
-                    <tr>\
-                        <th scope="row">Commune</th>\
-                        <td>' + (feature.properties['libgeo'] !== null ? autolinker.link(feature.properties['libgeo'].toLocaleString()) : '') + '</td>\
-                    </tr>\
-                </table>';
-            layer.bindPopup(popupContent, {maxHeight: 400});
-        }
-
-        function style_CommunesavecQPV_7_0() {
-            return {
-                pane: 'pane_CommunesavecQPV_7',
-                opacity: 1,
-                color: 'rgba(228,26,28,1.0)',
-                dashArray: '',
-                lineCap: 'square',
-                lineJoin: 'bevel',
-                weight: 5.0,
-                fillOpacity: 0,
-                interactive: true,
-            }
-        }
-        map.createPane('pane_CommunesavecQPV_7');
-        map.getPane('pane_CommunesavecQPV_7').style.zIndex = 407;
-        map.getPane('pane_CommunesavecQPV_7').style['mix-blend-mode'] = 'normal';
-        var layer_CommunesavecQPV_7 = new L.geoJson(json_CommunesavecQPV_7, {
-            attribution: '',
-            interactive: true,
-            dataVar: 'json_CommunesavecQPV_7',
-            layerName: 'layer_CommunesavecQPV_7',
-            pane: 'pane_CommunesavecQPV_7',
-            onEachFeature: pop_CommunesavecQPV_7,
-            style: style_CommunesavecQPV_7_0,
-        });
-        bounds_group.addLayer(layer_CommunesavecQPV_7);
-        function pop_QPVAude_8(feature, layer) {
+        function pop_QPVAude_7(feature, layer) {
             layer.on({
                 mouseout: function(e) {
                     if (typeof layer.closePopup == 'function') {
@@ -660,34 +624,82 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
-        function style_QPVAude_8_0() {
+        function style_QPVAude_7_0() {
             return {
-                pane: 'pane_QPVAude_8',
+                pane: 'pane_QPVAude_7',
                 opacity: 1,
-                color: 'rgba(35,35,35,1.0)',
+                color: 'rgba(35,35,35,0.8)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
                 weight: 1.0, 
                 fill: true,
                 fillOpacity: 1,
-                fillColor: 'rgba(183,72,75,1.0)',
+                fillColor: 'rgba(183,72,75,0.8)',
                 interactive: true,
             }
         }
-        map.createPane('pane_QPVAude_8');
-        map.getPane('pane_QPVAude_8').style.zIndex = 408;
-        map.getPane('pane_QPVAude_8').style['mix-blend-mode'] = 'normal';
-        var layer_QPVAude_8 = new L.geoJson(json_QPVAude_8, {
+        map.createPane('pane_QPVAude_7');
+        map.getPane('pane_QPVAude_7').style.zIndex = 407;
+        map.getPane('pane_QPVAude_7').style['mix-blend-mode'] = 'normal';
+        var layer_QPVAude_7 = new L.geoJson(json_QPVAude_7, {
             attribution: '',
             interactive: true,
-            dataVar: 'json_QPVAude_8',
-            layerName: 'layer_QPVAude_8',
-            pane: 'pane_QPVAude_8',
-            onEachFeature: pop_QPVAude_8,
-            style: style_QPVAude_8_0,
+            dataVar: 'json_QPVAude_7',
+            layerName: 'layer_QPVAude_7',
+            pane: 'pane_QPVAude_7',
+            onEachFeature: pop_QPVAude_7,
+            style: style_QPVAude_7_0,
         });
-        bounds_group.addLayer(layer_QPVAude_8);
+        bounds_group.addLayer(layer_QPVAude_7);
+        function pop_CommunesavecQPV_8(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Commune</th>\
+                        <td>' + (feature.properties['libgeo'] !== null ? autolinker.link(feature.properties['libgeo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_CommunesavecQPV_8_0() {
+            return {
+                pane: 'pane_CommunesavecQPV_8',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_CommunesavecQPV_8');
+        map.getPane('pane_CommunesavecQPV_8').style.zIndex = 408;
+        map.getPane('pane_CommunesavecQPV_8').style['mix-blend-mode'] = 'normal';
+        var layer_CommunesavecQPV_8 = new L.geoJson(json_CommunesavecQPV_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_CommunesavecQPV_8',
+            layerName: 'layer_CommunesavecQPV_8',
+            pane: 'pane_CommunesavecQPV_8',
+            onEachFeature: pop_CommunesavecQPV_8,
+            style: style_CommunesavecQPV_8_0,
+        });
+        bounds_group.addLayer(layer_CommunesavecQPV_8);
         function pop_Communesavecaidealimentaire_9(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -705,6 +717,10 @@
                     <tr>\
                         <th scope="row">Commune</th>\
                         <td>' + (feature.properties['libgeo'] !== null ? autolinker.link(feature.properties['libgeo'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Population</th>\
+                        <td>' + (feature.properties['Population'] !== null ? autolinker.link(feature.properties['Population'].toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -1047,8 +1063,8 @@
         rotationAngle: 0.0,
         rotationOrigin: 'center center',
         icon: L.icon({
-            iconUrl: 'markers/Secours Catholique.svg',
-            iconSize: [19.000000000000007, 19.000000000000007]
+            iconUrl: 'markers/Secours Populaire Français.svg',
+            iconSize: [19.0, 19.0]
         }),
                 interactive: true,
             }
@@ -1103,7 +1119,7 @@
             return {
                 pane: 'pane_BA11_15',
                 shape: 'square',
-                radius: 12.400000000000004,
+                radius: 12.4,
                 opacity: 1,
                 color: 'rgba(250,250,250,1.0)',
                 dashArray: '',
@@ -1281,7 +1297,7 @@
             };
             title.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'<img src="legend/DpartementAude_17.png" /> Département Aude': layer_DpartementAude_17,'<img src="legend/Dpartementvoisins_16.png" /> Département voisins': layer_Dpartementvoisins_16,'<img src="legend/BA11_15.png" /> BA11': layer_BA11_15,'<img src="legend/SecoursPop_14.png" /> Secours Pop': layer_SecoursPop_14,'<img src="legend/RestoduCoeur_13.png" /> Resto du Coeur': layer_RestoduCoeur_13,'<img src="legend/Associationspartenaires_12.png" /> Associations partenaires': layer_Associationspartenaires_12,'<img src="legend/Autresassociationshabilites_11.png" /> Autres associations habilitées': layer_Autresassociationshabilites_11,'<img src="legend/Epicerieitinrante_10.png" /> Epicerie itinérante': layer_Epicerieitinrante_10,'<img src="legend/Communesavecaidealimentaire_9.png" /> Communes avec aide alimentaire': layer_Communesavecaidealimentaire_9,'<img src="legend/QPVAude_8.png" /> QPV Aude': layer_QPVAude_8,'<img src="legend/CommunesavecQPV_7.png" /> Communes avec QPV': layer_CommunesavecQPV_7,'EPCI - Taux de pauvreté<br /><table><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_1491780.png" /></td><td>14,9 - 17,8</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_1782061.png" /></td><td>17,8 - 20,6</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_2062352.png" /></td><td>20,6 - 23,5</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_2352633.png" /></td><td>23,5 - 26,3</td></tr></table>': layer_EPCITauxdepauvret_6,'Médiane du niveau de vie - communes<br /><table><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_11780146700.png" /></td><td>11780 - 14670</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_14910177501.png" /></td><td>14910 - 17750</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_17770206802.png" /></td><td>17770 - 20680</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_20690235403.png" /></td><td>20690 - 23540</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_23800266604.png" /></td><td>23800 - 26660</td></tr></table>': layer_Mdianeduniveaudeviecommunes_5,'Chômage<br /><table><tr><td style="text-align: center;"><img src="legend/Chmage_4_01130.png" /></td><td>0 - 11,3</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_1131421.png" /></td><td>11,3 - 14,2</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_1421732.png" /></td><td>14,2 - 17,3</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_1732213.png" /></td><td>17,3 - 22,1</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_221504.png" /></td><td>22,1 - 50</td></tr></table>': layer_Chmage_4,'<img src="legend/ZRR_3.png" /> ZRR': layer_ZRR_3,'<img src="legend/CommunesAude_2.png" /> Communes Aude': layer_CommunesAude_2,'<img src="legend/Communesensecretstatistique_1.png" /> Communes en secret statistique': layer_Communesensecretstatistique_1,"Google Road": layer_GoogleRoad_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,{'<img src="legend/DpartementAude_17.png" /> Département Aude': layer_DpartementAude_17,'<img src="legend/Dpartementvoisins_16.png" /> Département voisins': layer_Dpartementvoisins_16,'<img src="legend/BA11_15.png" /> BA11': layer_BA11_15,'<img src="legend/SecoursPop_14.png" /> Secours Pop': layer_SecoursPop_14,'<img src="legend/RestoduCoeur_13.png" /> Resto du Coeur': layer_RestoduCoeur_13,'<img src="legend/Associationspartenaires_12.png" /> Associations partenaires': layer_Associationspartenaires_12,'<img src="legend/Autresassociationshabilites_11.png" /> Autres associations habilitées': layer_Autresassociationshabilites_11,'<img src="legend/Epicerieitinrante_10.png" /> Epicerie itinérante': layer_Epicerieitinrante_10,'<img src="legend/Communesavecaidealimentaire_9.png" /> Communes avec aide alimentaire': layer_Communesavecaidealimentaire_9,'<img src="legend/CommunesavecQPV_8.png" /> Communes avec QPV': layer_CommunesavecQPV_8,'<img src="legend/QPVAude_7.png" /> QPV Aude': layer_QPVAude_7,'EPCI - Taux de pauvreté<br /><table><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_1491780.png" /></td><td>14,9 - 17,8</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_1782061.png" /></td><td>17,8 - 20,6</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_2062352.png" /></td><td>20,6 - 23,5</td></tr><tr><td style="text-align: center;"><img src="legend/EPCITauxdepauvret_6_2352633.png" /></td><td>23,5 - 26,3</td></tr></table>': layer_EPCITauxdepauvret_6,'Médiane du niveau de vie - communes<br /><table><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_11780146700.png" /></td><td>11780 - 14670</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_14910177501.png" /></td><td>14910 - 17750</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_17770206802.png" /></td><td>17770 - 20680</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_20690235403.png" /></td><td>20690 - 23540</td></tr><tr><td style="text-align: center;"><img src="legend/Mdianeduniveaudeviecommunes_5_23800266604.png" /></td><td>23800 - 26660</td></tr></table>': layer_Mdianeduniveaudeviecommunes_5,'Chômage<br /><table><tr><td style="text-align: center;"><img src="legend/Chmage_4_01130.png" /></td><td>0 - 11,3</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_1131421.png" /></td><td>11,3 - 14,2</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_1421732.png" /></td><td>14,2 - 17,3</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_1732213.png" /></td><td>17,3 - 22,1</td></tr><tr><td style="text-align: center;"><img src="legend/Chmage_4_221504.png" /></td><td>22,1 - 50</td></tr></table>': layer_Chmage_4,'<img src="legend/ZRR_3.png" /> ZRR ': layer_ZRR_3,'<img src="legend/CommunesAude_2.png" /> Communes Aude': layer_CommunesAude_2,'<img src="legend/Communesensecretstatistique_1.png" /> Communes en secret statistique': layer_Communesensecretstatistique_1,"Google Road": layer_GoogleRoad_0,},{collapsed:false}).addTo(map);
         setBounds();
         var i = 0;
         layer_Dpartementvoisins_16.eachLayer(function(layer) {
